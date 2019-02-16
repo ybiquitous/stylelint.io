@@ -2,14 +2,34 @@ const fs = require("fs-extra");
 const glob = require("glob");
 const path = require("path");
 
+const basedir = process.argv[2];
+if (!basedir) {
+  throw new Error("Missing basedir!");
+}
+
 // Copy /docs
-fs.copySync("node_modules/stylelint/docs", "content");
+fs.copySync("node_modules/stylelint/docs", basedir);
+
+// Generate common frontmatter
+const extractTitle = str => str.match(/\n?#\s+([^\n]+)\n/)[1];
+glob.sync(`${basedir}/**/*.md`).forEach(file => {
+  const data = fs.readFileSync(file, "utf8");
+  fs.writeFile(
+    file,
+    `---
+hide_title: true
+sidebar_label: ${extractTitle(data)}
+---
+
+${data}`
+  );
+});
 
 // Copy rule READMEs
 const rules = glob.sync("node_modules/stylelint/lib/rules/**/README.md");
 
 // Create array of rules in a right order
-const listOfRulesPath = "content/user-guide/rules.md";
+const listOfRulesPath = `${basedir}/user-guide/rules.md`;
 const ruleRegex = /(- *\[`.*?])/g;
 let rulesInOrder = [];
 
@@ -27,7 +47,7 @@ fs.readFile(listOfRulesPath, "utf8", function(err, data) {
       .dirname(file)
       .split("/")
       .pop();
-    const rulePath = `content/user-guide/rules/${fileName}.md`;
+    const rulePath = `${basedir}/user-guide/rules/${fileName}.md`;
     const ruleIndex = rulesInOrder.indexOf(fileName);
     const nextRuleName = rulesInOrder[ruleIndex + 1];
     const prevRuleName = rulesInOrder[ruleIndex - 1];
@@ -57,13 +77,27 @@ fs.readFile(listOfRulesPath, "utf8", function(err, data) {
 });
 
 // Copy root files (README, CHANGELOG, VISION etc)
+const titleCase = str =>
+  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 const rootFiles = glob.sync("node_modules/stylelint/*.md");
 rootFiles.forEach(function(file) {
-  fs.copySync(file, `content/${path.basename(file)}`);
+  const destFile = `${basedir}/${path.basename(file)}`;
+  fs.copySync(file, destFile);
+  const data = fs.readFileSync(destFile, "utf8");
+  const isReadme = path.basename(file) === "README.md";
+  fs.writeFile(
+    destFile,
+    `---
+hide_title: true
+sidebar_label: ${isReadme ? "Home" : titleCase(path.basename(file, ".md"))}
+---
+
+${data}`
+  );
 });
 
 // Rename main readme
-fs.renameSync("content/README.md", "content/index.md");
+fs.renameSync(`${basedir}/README.md`, `${basedir}/index.md`);
 
 // Create demo.md
 const demo = `---
@@ -72,7 +106,7 @@ description: Try stylelint in your browser
 layout: DemoPage
 ---
 `;
-const demoPath = "content/demo";
+const demoPath = `${basedir}/demo`;
 if (!fs.existsSync(demoPath)) {
   fs.mkdirSync(demoPath);
 }
