@@ -12,8 +12,8 @@ const extractTitleFromMarkdown = str => str.match(/\n?# ([^\n]+)\n/)[1];
 // Copy /docs
 fs.copySync("node_modules/stylelint/docs", basedir);
 
-// Generate common frontmatter
-glob.sync(`${basedir}/**/*.md`).forEach(file => {
+// Insert common frontmatter
+glob.sync("/**/*.md", { root: basedir }).forEach(file => {
   const data = fs.readFileSync(file, "utf8");
   const title = extractTitleFromMarkdown(data);
   fs.writeFile(
@@ -80,18 +80,14 @@ fs.readFile(listOfRulesPath, "utf8", function(err, data) {
 });
 
 // Copy root files (README, CHANGELOG, VISION etc)
-const titleCase = str =>
-  str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 const rootFiles = glob.sync("node_modules/stylelint/*.md");
 rootFiles.forEach(function(file) {
-  const destFile = `${basedir}/${path.basename(file)}`;
-  fs.copySync(file, destFile);
-  const data = fs.readFileSync(destFile, "utf8");
+  const data = fs.readFileSync(file, "utf8");
   const title = file.endsWith("README.md")
     ? "Home"
     : extractTitleFromMarkdown(data);
   fs.writeFile(
-    destFile,
+    `${basedir}/${path.basename(file)}`,
     `---
 title: ${title}
 sidebar_label: ${title}

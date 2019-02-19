@@ -2,8 +2,8 @@
  * Remark plugin to add classes to valid and invalid code patterns
  */
 
-import visit from "unist-util-visit";
-import toString from "mdast-util-to-string";
+const visit = require("unist-util-visit");
+const toString = require("mdast-util-to-string");
 
 const validTriggers = [
   "The following patterns are not considered violations:",
@@ -18,7 +18,7 @@ const resetTrigger = "Given:";
 const validClass = "valid-pattern";
 const invalidClass = "invalid-pattern";
 
-export default function attacher() {
+module.exports = function attacher() {
   let invalidPatternFlag = false;
   let validPatternFlag = false;
 
@@ -68,4 +68,4 @@ export default function attacher() {
   }
 
   return ast => visit(ast, visitor);
-}
+};
