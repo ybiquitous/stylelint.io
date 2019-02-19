@@ -7,18 +7,21 @@ if (!basedir) {
   throw new Error("Missing basedir!");
 }
 
+const extractTitleFromMarkdown = str => str.match(/\n?# ([^\n]+)\n/)[1];
+
 // Copy /docs
 fs.copySync("node_modules/stylelint/docs", basedir);
 
 // Generate common frontmatter
-const extractTitle = str => str.match(/\n?#\s+([^\n]+)\n/)[1];
 glob.sync(`${basedir}/**/*.md`).forEach(file => {
   const data = fs.readFileSync(file, "utf8");
+  const title = extractTitleFromMarkdown(data);
   fs.writeFile(
     file,
     `---
+title: ${title}
+sidebar_label: ${title}
 hide_title: true
-sidebar_label: ${extractTitle(data)}
 ---
 
 ${data}`
@@ -84,12 +87,15 @@ rootFiles.forEach(function(file) {
   const destFile = `${basedir}/${path.basename(file)}`;
   fs.copySync(file, destFile);
   const data = fs.readFileSync(destFile, "utf8");
-  const isReadme = path.basename(file) === "README.md";
+  const title = file.endsWith("README.md")
+    ? "Home"
+    : extractTitleFromMarkdown(data);
   fs.writeFile(
     destFile,
     `---
+title: ${title}
+sidebar_label: ${title}
 hide_title: true
-sidebar_label: ${isReadme ? "Home" : titleCase(path.basename(file, ".md"))}
 ---
 
 ${data}`

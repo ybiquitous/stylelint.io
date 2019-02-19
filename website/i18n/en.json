@@ -3,117 +3,117 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "A website for testing",
+    "tagline": "A mighty, modern linter that helps you avoid errors and enforce conventions in your styles",
     "docs": {
       "CHANGELOG": {
-        "title": "CHANGELOG",
+        "title": "Changelog",
         "sidebar_label": "Changelog"
       },
       "CONTRIBUTING": {
-        "title": "CONTRIBUTING",
+        "title": "Contributing",
         "sidebar_label": "Contributing"
       },
       "demo/index": {
         "title": "demo/index"
       },
       "developer-guide": {
-        "title": "developer-guide",
+        "title": "Developer guide",
         "sidebar_label": "Developer guide"
       },
       "developer-guide/formatters": {
-        "title": "developer-guide/formatters",
+        "title": "Writing formatters",
         "sidebar_label": "Writing formatters"
       },
       "developer-guide/issues": {
-        "title": "developer-guide/issues",
+        "title": "Managing issues",
         "sidebar_label": "Managing issues"
       },
       "developer-guide/plugins": {
-        "title": "developer-guide/plugins",
+        "title": "Writing plugins",
         "sidebar_label": "Writing plugins"
       },
       "developer-guide/prerequisites": {
-        "title": "developer-guide/prerequisites",
+        "title": "Prerequisites to contributing",
         "sidebar_label": "Prerequisites to contributing"
       },
       "developer-guide/processors": {
-        "title": "developer-guide/processors",
+        "title": "Writing processors",
         "sidebar_label": "Writing processors"
       },
       "developer-guide/pull-requests": {
-        "title": "developer-guide/pull-requests",
+        "title": "Reviewing pull requests",
         "sidebar_label": "Reviewing pull requests"
       },
       "developer-guide/releases": {
-        "title": "developer-guide/releases",
+        "title": "Performing releases",
         "sidebar_label": "Performing releases"
       },
       "developer-guide/rule-testers": {
-        "title": "developer-guide/rule-testers",
+        "title": "Rule testers",
         "sidebar_label": "Rule testers"
       },
       "developer-guide/rules": {
-        "title": "developer-guide/rules",
+        "title": "Working on rules",
         "sidebar_label": "Working on rules"
       },
       "index": {
-        "title": "index",
+        "title": "Home",
         "sidebar_label": "Home"
       },
       "user-guide": {
-        "title": "user-guide",
+        "title": "User guide",
         "sidebar_label": "User guide"
       },
       "user-guide/about-rules": {
-        "title": "user-guide/about-rules",
+        "title": "About rules",
         "sidebar_label": "About rules"
       },
       "user-guide/articles": {
-        "title": "user-guide/articles",
+        "title": "Articles",
         "sidebar_label": "Articles"
       },
       "user-guide/cli": {
-        "title": "user-guide/cli",
+        "title": "The stylelint CLI",
         "sidebar_label": "The stylelint CLI"
       },
       "user-guide/complementary-tools": {
-        "title": "user-guide/complementary-tools",
+        "title": "Complementary tools",
         "sidebar_label": "Complementary tools"
       },
       "user-guide/configuration": {
-        "title": "user-guide/configuration",
+        "title": "Configuration",
         "sidebar_label": "Configuration"
       },
       "user-guide/css-processors": {
-        "title": "user-guide/css-processors",
+        "title": "CSS processors",
         "sidebar_label": "CSS processors"
       },
       "user-guide/example-config": {
-        "title": "user-guide/example-config",
+        "title": "Example config",
         "sidebar_label": "Example config"
       },
       "user-guide/faq": {
-        "title": "user-guide/faq",
+        "title": "FAQ",
         "sidebar_label": "FAQ"
       },
       "user-guide/node-api": {
-        "title": "user-guide/node-api",
+        "title": "The stylelint Node.js API",
         "sidebar_label": "The stylelint Node.js API"
       },
       "user-guide/plugins": {
-        "title": "user-guide/plugins",
+        "title": "Plugins",
         "sidebar_label": "Plugins"
       },
       "user-guide/postcss-plugin": {
-        "title": "user-guide/postcss-plugin",
+        "title": "The stylelint PostCSS plugin",
         "sidebar_label": "The stylelint PostCSS plugin"
       },
       "user-guide/processors": {
-        "title": "user-guide/processors",
+        "title": "Processors",
         "sidebar_label": "Processors"
       },
       "user-guide/rules": {
-        "title": "user-guide/rules",
+        "title": "Rules",
         "sidebar_label": "Rules"
       },
       "user-guide/rules/at-rule-blacklist": {
@@ -636,11 +636,11 @@
         "title": "user-guide/rules/value-no-vendor-prefix"
       },
       "user-guide/semantic-versioning-policy": {
-        "title": "user-guide/semantic-versioning-policy",
+        "title": "Semantic versioning policy",
         "sidebar_label": "Semantic versioning policy"
       },
       "VISION": {
-        "title": "VISION",
+        "title": "Vision",
         "sidebar_label": "Vision"
       }
     },
